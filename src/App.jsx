@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Expense from "./componant/Expense";
+import Expense from "./componant/Expenses/Expense";
 import Newexpense from "./componant/NewExpense/Newexpense";
-import ExpenseFilter from "./componant/ExpenseFilter";
+// import ExpenseFilter from "./componant/Expenses/ExpenseFilter";
 
 const DUMMY_Expense = [
   {
@@ -23,24 +23,12 @@ const DUMMY_Expense = [
 
 function App() {
   const [expense, setExpenses] = useState(DUMMY_Expense);
-  const [filteredYear, setFilteredYear] = useState("2025");
 
   const addnewexpenseHandler = (expense) => {
-    // console.log("in app js");
-    // console.log(expense);
-
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
-
-  const filterChangeHandler = (year) => {
-    setFilteredYear(year);
-  };
-
-  const filteredExpenses = expense.filter((exp) => {
-    return exp.date.getFullYear().toString() === filteredYear;
-  });
 
   return (
     <>
@@ -55,18 +43,12 @@ function App() {
           <Newexpense onaddnewexpense={addnewexpenseHandler} />
         </div>
 
-        {/* Expense Filter Section */}
-        <ExpenseFilter
-          selected={filteredYear}
-          onChangeFilter={filterChangeHandler}
-        />
-
         {/* Expense List Section */}
         <div className="w-full max-w-4xl bg-white rounded-xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Your Expenses
           </h2>
-          <Expense items={filteredExpenses} />
+          <Expense items={expense} />
         </div>
       </div>
     </>

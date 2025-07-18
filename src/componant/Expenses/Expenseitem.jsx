@@ -1,4 +1,4 @@
-import Expensedate from "./Expensedate";
+import Expensedate from "./Expensedate.jsx";
 import React, { useState } from "react";
 
 function Expenseitem(props) {
